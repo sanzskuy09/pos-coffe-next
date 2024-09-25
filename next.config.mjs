@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eactStrictMode: false,
+  // eactStrictMode: false,
   async redirects() {
     return [
       {

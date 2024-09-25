@@ -2,11 +2,13 @@ import Image from "next/image";
 import React from "react";
 
 import ImageContoh from "@/assets/image/contoh.jpg";
+import CardOrderItem from "../CardOrderItem";
 
 const SidebarCart = () => {
+  const arrayList = [1, 2, 2, 2, 2];
   return (
-    <div className="h-screen w-96 border-l border-l-gray-200 flex flex-col">
-      <div className="h-28 flex items-center px-8 gap-2 mb-10 border-b-2">
+    <div className="max-h-screen w-96 border-l border-l-gray-200 flex flex-col overflow-y-hidden">
+      <div className="min-h-28 flex items-center px-8 gap-2 border-b-2">
         <div className="w-12 h-12 rounded-full bg-primary flex justify-center items-center">
           I
         </div>
@@ -16,43 +18,23 @@ const SidebarCart = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between h-full">
-        <div className="flex justify-between px-8 mb-6">
+      <div className="flex flex-col">
+        {/* Cart Header */}
+        <div className="flex justify-between px-8 py-4">
           <h3 className="text-xl font-semibold">Cart</h3>
           <p className="font-semibold text-slate-400">Order #1234</p>
         </div>
+        <hr />
 
-        {/* list Order */}
-        <div className=" flex-grow overflow-y-auto flex flex-col gap-6">
-          <div className="flex items-center px-8 ">
-            <Image
-              src={ImageContoh}
-              alt="asd"
-              // width={100}
-              // height={100}
-              className="bg-slate-500 rounded-xl object-cover w-32 h-32"
-            />
-
-            <div className="flex flex-col justify-between p-4 h-full w-full">
-              <div>
-                <h2 className="text-lg font-semibold">Cappucino</h2>
-                <p className="text-sm text-slate-400">Small - 200g</p>
-              </div>
-
-              <div className="flex justify-between w-full">
-                <p className="font-medium">Rp. 40K</p>
-                <div className="flex items-center gap-3">
-                  <p className="border border-slate-400 px-2 rounded-full">-</p>
-                  <p>1</p>
-                  <p className="border border-slate-400 px-2 rounded-full">+</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* List Order */}
+        <div className="overflow-y-auto flex flex-col flex-1 gap-6 px-8 h-2/4 py-8">
+          {arrayList.map((item) => (
+            <CardOrderItem key={item} />
+          ))}
         </div>
 
-        {/* order payment */}
-        <div className="flex flex-col gap-4 py-8">
+        {/* Order Payment */}
+        <div className="flex flex-col gap-4 pb-8 flex-auto">
           <hr />
           <div className="flex justify-between px-8">
             <p className="text-gray-400 font-medium">Items</p>
