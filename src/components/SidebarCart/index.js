@@ -1,11 +1,15 @@
+"use client";
 import Image from "next/image";
+
 import React from "react";
 
 import ImageContoh from "@/assets/image/contoh.jpg";
 import CardOrderItem from "../CardOrderItem";
+import useCartStore from "@/store/useCartStore";
 
 const SidebarCart = () => {
-  const arrayList = [1, 2, 2, 2, 2];
+  // const arrayList = [1, 2, 2, 2, 2];
+
   return (
     <div className="max-h-screen w-96 border-l border-l-gray-200 flex flex-col overflow-y-hidden">
       <div className="min-h-28 flex items-center px-8 gap-2 border-b-2">
@@ -28,9 +32,9 @@ const SidebarCart = () => {
 
         {/* List Order */}
         <div className="overflow-y-auto flex flex-col flex-1 gap-6 px-8 h-2/4 py-8">
-          {arrayList.map((item) => (
-            <CardOrderItem key={item} />
-          ))}
+          {/* {arrayList.map((item) => (
+            ))} */}
+          <CardOrderItem />
         </div>
 
         {/* Order Payment */}

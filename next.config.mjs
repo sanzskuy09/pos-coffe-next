@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // eactStrictMode: false,
+  reactStrictMode: false,
   async redirects() {
     return [
       {
         source: "/",
         destination: "/order/dashboard",
-        permanent: true,
+        permanent: false,
       },
     ];
   },
