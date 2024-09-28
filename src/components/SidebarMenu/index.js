@@ -16,7 +16,7 @@ const SidebarMenu = () => {
 
   return (
     <div className="max-h-screen fixed bottom-0 top-0 left-0 w-72 border-r border-r-gray-200 ">
-      <div className="h-28 flex flex-col items-center pt-4 gap-2 mb-10 border-b-2">
+      <div className="h-28 flex flex-col items-center pt-4 gap-2 mb-10 ">
         <h1 className="text-3xl font-semibold">
           <span className="text-primary">POS.</span>COFFEE
         </h1>

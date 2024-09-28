@@ -78,7 +78,7 @@ const SidebarCart = () => {
 
   return (
     <div className="h-screen fixed top-0 bottom-0 right-0 w-96 border-l border-l-gray-200 flex flex-col overflow-y-hidden">
-      <div className="min-h-28 flex items-center px-8 gap-2 border-b-2">
+      <div className="min-h-28 flex items-center px-8 gap-2 border-b">
         <div className="w-12 h-12 rounded-full bg-primary flex justify-center items-center">
           UC
         </div>
