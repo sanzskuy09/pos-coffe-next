@@ -35,7 +35,7 @@ const Menu = () => {
                   src={item.image}
                   alt="coffe-img"
                   fill
-                  // priority
+                  priority
                   // unoptimized
                   style={{
                     objectFit: "cover", // cover, contain, none
