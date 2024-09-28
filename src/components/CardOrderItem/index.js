@@ -3,6 +3,7 @@ import React from "react";
 
 import Image from "next/image";
 import useCartStore from "@/store/useCartStore";
+import convertToRupiah from "@/utils/formatRupiah";
 
 const CardOrderItem = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -11,14 +12,6 @@ const CardOrderItem = () => {
 
   const handleAddToCart = (item) => {
     addToCart(item); // Tambah item ke state cart
-  };
-
-  const convertToRupiah = (number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    }).format(number);
   };
 
   return (
@@ -56,7 +49,7 @@ const CardOrderItem = () => {
 
                 <div className="flex flex-col gap-2 w-full">
                   <p className="font-medium">
-                    Rp. {convertToRupiah(item.price * item.quantity)}
+                    {convertToRupiah(item.price * item.quantity)}
                   </p>
                   <div className="flex items-center gap-3">
                     <button

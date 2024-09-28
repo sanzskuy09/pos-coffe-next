@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import CardOrderItem from "../CardOrderItem";
 import useCartStore from "@/store/useCartStore";
 import useHistoryStore from "@/store/useHistoryStore";
-import Link from "next/link";
 
+import convertToRupiah from "@/utils/formatRupiah";
 import { toast } from "react-toastify";
 
 const SidebarCart = () => {
@@ -30,12 +30,11 @@ const SidebarCart = () => {
   const notify = () =>
     toast.success("Succeess to order!", {
       position: "top-right",
-      autoClose: 2000, // Auto-close dalam 3 detik
+      autoClose: 2000, // Auto-close dalam 2 detik
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      // theme: "colored",
     });
 
   const historyData = {
@@ -44,16 +43,6 @@ const SidebarCart = () => {
     tanggal: `${day}-${month}-${year}`,
     status: "Completed",
     amount: totalPrice - totalDisc,
-  };
-
-  console.log("historyData >>", historyData);
-
-  const convertToRupiah = (number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    }).format(number);
   };
 
   const handleAddHistory = (item) => {
@@ -73,8 +62,6 @@ const SidebarCart = () => {
   useEffect(() => {
     setOrderID(Math.floor(Math.random() * 10000));
   }, []);
-
-  // console.log(cart);
 
   return (
     <div className="h-screen fixed top-0 bottom-0 right-0 w-96 border-l border-l-gray-200 flex flex-col overflow-y-hidden">

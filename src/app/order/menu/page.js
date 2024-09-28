@@ -2,16 +2,10 @@
 import React from "react";
 import Image from "next/image";
 
+import convertToRupiah from "@/utils/formatRupiah";
 import dataMenuCoffe from "@/config/data-menu.json";
 
 const Menu = () => {
-  const convertToRupiah = (number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-    }).format(number);
-  };
-
   return (
     <div>
       <div className="h-28 flex items-center px-8 gap-2 bg-white border-b">
@@ -59,7 +53,9 @@ const Menu = () => {
                   <div className="flex flex-col gap-2">
                     <h2 className="text-xl font-semibold">{item.name}</h2>
                     <h5 className="text-sm text-gray-500">{item.desc}</h5>
-                    <p className="font-medium">{convertToRupiah(item.price)}</p>
+                    <p className="font-medium">
+                      {convertToRupiah(item.price, 2)}
+                    </p>
                   </div>
                 </div>
               </div>

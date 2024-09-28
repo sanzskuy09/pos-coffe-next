@@ -1,17 +1,11 @@
 "use client";
 import React from "react";
 import useHistoryStore from "@/store/useHistoryStore";
+import convertToRupiah from "@/utils/formatRupiah";
 
 const History = () => {
   const { history } = useHistoryStore();
 
-  const convertToRupiah = (number) => {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0,
-    }).format(number);
-  };
   return (
     <div>
       <div className="h-28 flex items-center px-8 gap-2 bg-white border-b">
@@ -29,31 +23,7 @@ const History = () => {
           <h1 className="text-3xl font-semibold mb-8">History Order</h1>
         </div>
 
-        <div className="">
-          {/* <table className="w-full">
-          <thead>
-            <tr className="text-left">
-              <th>No.</th>
-              <th>Transaksi ID</th>
-              <th>Order ID</th>
-              <th>Tanggal</th>
-              <th>Status</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.trxId}</td>
-                <td>{item.orderId}</td>
-                <td>{item.tanggal}</td>
-                <td>{item.status}</td>
-                <td>{convertToRupiah(item.amount)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
+        <div>
           <table className="w-full border-collapse bg-white shadow-md">
             <thead>
               <tr className="text-left bg-primary text-white">
