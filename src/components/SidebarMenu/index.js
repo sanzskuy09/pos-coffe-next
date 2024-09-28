@@ -9,7 +9,7 @@ const SidebarMenu = () => {
     "h-10 flex items-center px-8 font-medium text-lg hover:text-primary hover:border-r-4 hover:border-primary duration-200 transition";
 
   return (
-    <div className="h-screen w-72 border-r border-r-gray-200 ">
+    <div className="max-h-screen fixed bottom-0 top-0 left-0 w-72 border-r border-r-gray-200 ">
       <div className="h-28 flex flex-col items-center pt-4 gap-2 mb-10 border-b-2">
         <h1 className="text-3xl font-semibold">
           <span className="text-primary">POS.</span>COFFEE

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Cappucino",
+    "image": "/image/cappucino.jpg",
+    "desc": "Cappucino adalah kopi dengan campuran espresso, susu, dan foam.",
+    "price": 15000,
+    "disc": 4000
+  },
+  {
+    "id": 2,
+    "name": "Latte",
+    "image": "/image/latte.jpg",
+    "desc": "Latte adalah kopi dengan lebih banyak susu dibandingkan foam.",
+    "price": 18000,
+    "disc": 3000
+  },
+  {
+    "id": 3,
+    "name": "Espresso",
+    "image": "/image/espresso.jpg",
+    "desc": "Espresso adalah kopi murni yang diseduh dengan tekanan tinggi.",
+    "price": 12000,
+    "disc": 2000
+  },
+  {
+    "id": 4,
+    "name": "Americano",
+    "image": "/image/americano.jpg",
+    "desc": "Americano adalah espresso yang dicampur dengan air panas.",
+    "price": 14000,
+    "disc": 2500
+  },
+  {
+    "id": 5,
+    "name": "Mocha",
+    "image": "/image/mocha.jpg",
+    "desc": "Mocha adalah campuran espresso, susu, dan coklat.",
+    "price": 20000,
+    "disc": 3500
+  },
+  {
+    "id": 6,
+    "name": "Macchiato",
+    "image": "/image/macchiato.jpg",
+    "desc": "Macchiato adalah espresso dengan sedikit susu di atasnya.",
+    "price": 17000,
+    "disc": 3000
+  }
+]

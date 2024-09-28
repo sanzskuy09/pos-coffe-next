@@ -14,7 +14,9 @@ export default function OrderLayout({ children }) {
           {/* sidebar menu */}
           <SidebarMenu />
 
-          <div className="flex-1 bg-gray-100">{children}</div>
+          <div className="flex-1 bg-gray-100 min-h-screen ml-72 mr-96">
+            {children}
+          </div>
 
           {/* sidebar cart */}
           <SidebarCart />
