@@ -81,7 +81,7 @@ const SidebarCart = () => {
           <p className="font-semibold text-slate-400">Order #{orderID}</p>
         </div>
 
-        <div className="flex flex-col  h-full">
+        <div className="flex flex-col h-full">
           <div className="px-8 h-[calc(100vh-28rem)] overflow-y-auto">
             <CardOrderItem />
           </div>

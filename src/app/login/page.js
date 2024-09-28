@@ -104,7 +104,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="flex-1 h-screen bg-red-400">
+      <div className="flex-1 h-screen">
         <div className="w-full h-full relative">
           <Image
             src="/image/login.jpg"
