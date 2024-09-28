@@ -87,7 +87,6 @@ const SidebarCart = () => {
           <p className="text-sm text-slate-400">user@gmail.com</p>
         </div>
       </div>
-      {/* <div>Search: {isShow ? "Show" : "Hide"}</div> */}
 
       <div className="flex-1 flex flex-col">
         <div className="flex justify-between px-8 py-4">
@@ -107,7 +106,7 @@ const SidebarCart = () => {
             </div>
             <div className="flex justify-between px-8">
               <p className="text-gray-400 font-medium">Discount</p>
-              <p className="font-medium">{convertToRupiah(totalDisc)}</p>
+              <p className="font-medium">{convertToRupiah(totalDisc)} -</p>
             </div>
             <hr className="px-8" />
             <div className="flex justify-between px-8">
