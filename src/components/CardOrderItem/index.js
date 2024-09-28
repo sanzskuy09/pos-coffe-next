@@ -2,7 +2,6 @@
 import React from "react";
 
 import Image from "next/image";
-import ImageContoh from "@/assets/image/contoh.jpg";
 import useCartStore from "@/store/useCartStore";
 
 const CardOrderItem = () => {
@@ -23,9 +22,17 @@ const CardOrderItem = () => {
   };
 
   return (
-    <>
+    <div>
       {totalItems === 0 ? (
-        <p className="text-center">Cart is empty</p>
+        <div className="flex flex-col items-center justify-center gap-4 mt-12">
+          <Image
+            src={"/icon/empty.svg"}
+            alt="empty-cart"
+            width={100}
+            height={100}
+          />
+          <p className="text-gray-400">Cart is empty</p>
+        </div>
       ) : (
         <>
           {cart.map((item) => (
@@ -72,7 +79,7 @@ const CardOrderItem = () => {
           ))}
         </>
       )}
-    </>
+    </div>
   );
 };
 

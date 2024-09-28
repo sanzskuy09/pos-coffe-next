@@ -1,14 +1,52 @@
 "use client";
 import Image from "next/image";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import ImageContoh from "@/assets/image/contoh.jpg";
+import { useRouter } from "next/navigation";
+
 import CardOrderItem from "../CardOrderItem";
 import useCartStore from "@/store/useCartStore";
+import useHistoryStore from "@/store/useHistoryStore";
+import Link from "next/link";
+
+import { toast } from "react-toastify";
 
 const SidebarCart = () => {
-  const { totalDisc, totalPrice } = useCartStore();
+  const router = useRouter();
+
+  const [isShow, setIsShow] = useState(false);
+  const [orderID, setOrderID] = useState("");
+
+  const { cart, totalDisc, totalPrice, resetCart } = useCartStore();
+  const addToHistory = useHistoryStore((state) => state.addHistory);
+
+  const time = new Date();
+  const month = String(time.getMonth() + 1).padStart(2, "0");
+  const day = String(time.getDate()).padStart(2, "0");
+  const year = time.getFullYear();
+  const formattedDate = `${month}${day}${year}`;
+
+  const notify = () =>
+    toast.success("Succeess to order!", {
+      position: "top-right",
+      autoClose: 2000, // Auto-close dalam 3 detik
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // theme: "colored",
+    });
+
+  const historyData = {
+    trxId: "TRX" + formattedDate + Math.floor(Math.random() * 1000),
+    orderId: "#" + orderID,
+    tanggal: `${day}-${month}-${year}`,
+    status: "Completed",
+    amount: totalPrice - totalDisc,
+  };
+
+  console.log("historyData >>", historyData);
 
   const convertToRupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -17,6 +55,26 @@ const SidebarCart = () => {
       maximumFractionDigits: 0,
     }).format(number);
   };
+
+  const handleAddHistory = (item) => {
+    addToHistory(item);
+    setOrderID(Math.floor(Math.random() * 10000));
+    resetCart();
+    setIsShow(!isShow);
+    router.push("/order/history");
+
+    notify();
+  };
+
+  const handleShow = () => {
+    setIsShow(!isShow);
+  };
+
+  useEffect(() => {
+    setOrderID(Math.floor(Math.random() * 10000));
+  }, []);
+
+  // console.log(cart);
 
   return (
     <div className="h-screen fixed top-0 bottom-0 right-0 w-96 border-l border-l-gray-200 flex flex-col overflow-y-hidden">
@@ -29,11 +87,12 @@ const SidebarCart = () => {
           <p className="text-sm text-slate-400">user@gmail.com</p>
         </div>
       </div>
+      {/* <div>Search: {isShow ? "Show" : "Hide"}</div> */}
 
       <div className="flex-1 flex flex-col">
         <div className="flex justify-between px-8 py-4">
           <h3 className="text-xl font-semibold">Cart</h3>
-          <p className="font-semibold text-slate-400">Order #1234</p>
+          <p className="font-semibold text-slate-400">Order #{orderID}</p>
         </div>
 
         <div className="flex flex-col  h-full">
@@ -58,53 +117,86 @@ const SidebarCart = () => {
               </p>
             </div>
 
-            <div className="flex justify-center mt-4">
-              <button className="bg-primary w-[80%] text-white font-medium px-8 py-2 rounded-xl hover:bg-secondary">
+            <div className="flex flex-col items-center gap-2 justify-center mt-4">
+              <button
+                onClick={() => handleShow()}
+                // onClick={notify}
+                className="bg-primary w-[80%] text-white font-medium px-8 py-2 rounded-xl hover:bg-secondary disabled:bg-gray-400"
+                disabled={cart.length === 0}
+              >
                 Checkout
+              </button>
+              <button onClick={() => resetCart()} className="text-gray-400">
+                Batalkan Pesanan
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* <div className="flex flex-col">
-        <div className="flex justify-between px-8 py-4">
-          <h3 className="text-xl font-semibold">Cart</h3>
-          <p className="font-semibold text-slate-400">Order #1234</p>
-        </div>
-        <hr />
-
-        <div className="overflow-y-auto flex flex-col flex-1 gap-6 px-8 h-2/4 py-8">
-          <CardOrderItem />
-        </div>
-
-        <div className="flex flex-col gap-4 pb-8 flex-auto">
-          <hr />
-          <div className="flex justify-between px-8">
-            <p className="text-gray-400 font-medium">Items</p>
-            <p className="font-medium">{convertToRupiah(totalPrice)}</p>
-          </div>
-          <div className="flex justify-between px-8">
-            <p className="text-gray-400 font-medium">Discount</p>
-            <p className="font-medium">{convertToRupiah(totalDisc)}</p>
-          </div>
-          <hr className="px-8" />
-          <div className="flex justify-between px-8">
-            <p className="text-gray-400 font-semibold">Total</p>
-            <p className="font-semibold text-primary">
-              {convertToRupiah(totalPrice - totalDisc)}
-            </p>
-          </div>
-
-          <div className="flex justify-center mt-4">
-            <button className="bg-primary w-[80%] text-white font-medium px-8 py-2 rounded-xl hover:bg-secondary">
-              Checkout
-            </button>
+      {isShow && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+          <div className="p-8 border w-96 shadow-lg rounded-md bg-white">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-gray-900 capitalize">
+                Konfirmasi Order
+              </h3>
+              <div className="mt-2 px-7 py-3">
+                <p className="text-lg text-gray-500">
+                  Apa kamu yakin ingin konfirmasi?
+                </p>
+              </div>
+              <div className="flex gap-4 justify-center mt-4">
+                <button
+                  onClick={() => handleShow()}
+                  className="px-4 py-2 bg-white text-gray-500 text-base font-medium rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-gray-300"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => handleAddHistory(historyData)}
+                  className="px-4 py-2 bg-primary text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                >
+                  Konfirmasi
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div> */}
+      )}
     </div>
   );
 };
+
+function Modal() {
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+      <div className="p-8 border w-96 shadow-lg rounded-md bg-white">
+        <div className="text-center">
+          <h3 className="text-2xl font-bold text-gray-900 capitalize">
+            Konfirmasi Order
+          </h3>
+          <div className="mt-2 px-7 py-3">
+            <p className="text-lg text-gray-500">
+              Apa kamu yakin ingin konfirmasi?
+            </p>
+          </div>
+          <div className="flex gap-4 justify-center mt-4">
+            {/* Navigates back to the base URL - closing the modal */}
+            <button
+              onClick={() => handleShow()}
+              className="px-4 py-2 bg-white text-gray-500 text-base font-medium rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-gray-300"
+            >
+              Close
+            </button>
+            <button className="px-4 py-2 bg-primary text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300">
+              Konfirmasi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default SidebarCart;

@@ -57,7 +57,8 @@ const useCartStore = create((set) => ({
       }
     }),
 
-  resetCart: () => set({ cart: [], totalItems: 0 }),
+  resetCart: () =>
+    set({ cart: [], totalItems: 0, totalPrice: 0, totalDisc: 0 }),
 }));
 
 export default useCartStore;
