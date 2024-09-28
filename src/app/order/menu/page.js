@@ -33,9 +33,10 @@ const Menu = () => {
               <div className="relative w-32 h-full rounded-xl">
                 <Image
                   src={item.image}
-                  alt="coffe-imgsds"
+                  alt="coffe-img"
                   fill
-                  priority
+                  // priority
+                  // unoptimized
                   style={{
                     objectFit: "cover", // cover, contain, none
                     borderRadius: "12px",
