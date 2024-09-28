@@ -26,7 +26,10 @@ const Menu = () => {
         >
           {/* Menu List */}
           {dataMenuCoffe.map((item) => (
-            <div className="bg-white h-52 rounded-xl p-4 flex gap-4 max-w-[400px]">
+            <div
+              key={item.id}
+              className="bg-white h-52 rounded-xl p-4 flex gap-4 max-w-[400px]"
+            >
               <div className="relative w-32 h-full rounded-xl">
                 <Image
                   src={item.image}

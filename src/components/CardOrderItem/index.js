@@ -35,8 +35,8 @@ const CardOrderItem = () => {
         </div>
       ) : (
         <>
-          {cart.map((item) => (
-            <div className="flex items-center">
+          {cart.map((item, i) => (
+            <div key={i} className="flex items-center">
               <div className="relative w-32 h-32">
                 <Image
                   src={item.image}
