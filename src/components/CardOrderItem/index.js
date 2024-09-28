@@ -18,12 +18,14 @@ const CardOrderItem = () => {
     <div>
       {totalItems === 0 ? (
         <div className="flex flex-col items-center justify-center gap-4 mt-12">
-          <Image
-            src={"/icon/empty.svg"}
-            alt="empty-cart"
-            width={100}
-            height={100}
-          />
+          <div className="w-32 h-32 relative">
+            <Image
+              src={"/icon/empty.svg"}
+              alt="empty-cart"
+              fill // Pertahankan rasio aspek
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
           <p className="text-gray-400">Cart is empty</p>
         </div>
       ) : (

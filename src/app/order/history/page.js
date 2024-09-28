@@ -5,7 +5,6 @@ import convertToRupiah from "@/utils/formatRupiah";
 
 const History = () => {
   const { history } = useHistoryStore();
-
   return (
     <div>
       <div className="h-28 flex items-center px-8 gap-2 bg-white border-b">
@@ -36,27 +35,35 @@ const History = () => {
               </tr>
             </thead>
             <tbody>
-              {history.map((item, index) => (
-                <tr
-                  key={index}
-                  className="border-b hover:bg-orange-50 transition-all"
-                >
-                  <td className="p-3">{index + 1}</td>
-                  <td className="p-3">{item.trxId}</td>
-                  <td className="p-3">{item.orderId}</td>
-                  <td className="p-3">{item.tanggal}</td>
-                  <td
-                    className={`p-3 ${
-                      item.status === "Completed"
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }`}
+              {history.length > 0 ? (
+                history.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="border-b hover:bg-orange-50 transition-all"
                   >
-                    {item.status}
+                    <td className="p-3">{index + 1}</td>
+                    <td className="p-3">{item.trxId}</td>
+                    <td className="p-3">{item.orderId}</td>
+                    <td className="p-3">{item.tanggal}</td>
+                    <td
+                      className={`p-3 ${
+                        item.status === "Completed"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {item.status}
+                    </td>
+                    <td className="p-3">{convertToRupiah(item.amount)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="p-3 text-center text-slate-400">
+                    No data transaction
                   </td>
-                  <td className="p-3">{convertToRupiah(item.amount)}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

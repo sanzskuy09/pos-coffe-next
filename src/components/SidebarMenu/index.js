@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const SidebarMenu = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const date = new Date().toDateString();
-  // const isActive = false;
 
   const styleLink =
     "h-10 flex items-center px-8 font-medium text-lg hover:text-primary hover:border-r-4 hover:border-primary duration-200 transition";
@@ -45,7 +45,16 @@ const SidebarMenu = () => {
         >
           History
         </Link>
+        <Link href={"/login"} className={styleLink}>
+          Logout
+        </Link>
       </div>
+
+      {/* <div>
+        <Link href={"/login"} className={styleLink}>
+          Logout
+        </Link>
+      </div> */}
     </div>
   );
 };
