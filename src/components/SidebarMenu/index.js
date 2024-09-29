@@ -2,6 +2,14 @@
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+
+import {
+  HomeIcon,
+  ListBulletIcon,
+  DocumentChartBarIcon,
+  ArrowRightStartOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 const SidebarMenu = () => {
   const pathname = usePathname();
@@ -11,8 +19,14 @@ const SidebarMenu = () => {
   const styleLink =
     "h-10 flex items-center px-8 font-medium text-lg hover:text-primary hover:border-r-4 hover:border-primary duration-200 transition";
 
+  const styleIcon =
+    "size-6 mr-2 group-hover:text-primary duration-200 transition";
+
   const isActive = (path) =>
     pathname === path ? "text-primary border-r-4 border-primary" : "";
+
+  const isActiveIcon = (path) =>
+    pathname === path ? "text-primary" : "text-black";
 
   const handleLogout = () => {
     router.push("/login");
@@ -31,14 +45,20 @@ const SidebarMenu = () => {
         <div className="flex flex-col gap-4 h-[calc(100vh-18rem)]">
           <Link
             href={"/order/dashboard"}
-            className={`${styleLink} ${isActive("/order/dashboard")}`}
+            className={`${styleLink} ${isActive("/order/dashboard")} group `}
           >
+            <HomeIcon
+              className={`${styleIcon} ${isActiveIcon("/order/dashboard")}`}
+            />
             Dashboard
           </Link>
           <Link
             href={"/order/menu"}
-            className={`${styleLink} ${isActive("/order/menu")}`}
+            className={`${styleLink} ${isActive("/order/menu")} group `}
           >
+            <ListBulletIcon
+              className={`${styleIcon} ${isActiveIcon("/order/menu")}`}
+            />
             Menu
           </Link>
           {/* <Link href={"/order/my-order"} className={`${styleLink} ${isActive("/order/my-order")}`}>
@@ -46,8 +66,11 @@ const SidebarMenu = () => {
         </Link> */}
           <Link
             href={"/order/history"}
-            className={`${styleLink} ${isActive("/order/history")}`}
+            className={`${styleLink} ${isActive("/order/history")} group`}
           >
+            <DocumentChartBarIcon
+              className={`${styleIcon} ${isActiveIcon("/order/history")}`}
+            />
             History
           </Link>
         </div>
@@ -55,8 +78,9 @@ const SidebarMenu = () => {
         <div className="px-8 ">
           <button
             onClick={handleLogout}
-            className="font-medium text-lg text-slate-400 w-full py-2 border border-slate-400 rounded-lg hover:bg-slate-400 hover:text-white duration-200 transition"
+            className="font-medium text-lg text-slate-400 w-full py-2 border border-slate-400 rounded-lg hover:bg-slate-400 hover:text-white duration-200 transition flex justify-center items-center group"
           >
+            <ArrowRightStartOnRectangleIcon className="size-6 mr-2 group-hover:text-white transition" />
             Logout
           </button>
           {/* <Link
