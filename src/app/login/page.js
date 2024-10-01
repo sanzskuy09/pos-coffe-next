@@ -5,20 +5,11 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 
 const Login = () => {
+  const router = useRouter();
   // const [form, setForm] = useState({ username: "user", password: "user" });
   const [btnDisabled, setBtnDisabled] = useState(false);
-  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setForm((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

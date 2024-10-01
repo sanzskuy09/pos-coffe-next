@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import useCartStore from "@/store/useCartStore";
 
 import convertToRupiah from "@/utils/formatRupiah";
-import dataMenuCoffe from "@/config/data-menu.json";
 
 const Dashboard = () => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -15,6 +14,28 @@ const Dashboard = () => {
   const handleAddToCart = (item) => {
     addToCart(item); // Tambah item ke state cart
   };
+
+  const [dataMenu, setDataMenu] = useState([]);
+  const getDataMenu = async () => {
+    try {
+      const data = await fetch("/api/product", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const response = await data.json();
+
+      setDataMenu(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getDataMenu();
+  }, []);
 
   return (
     <div className="p-8">
@@ -44,14 +65,14 @@ const Dashboard = () => {
           }}
         >
           {/* Menu List */}
-          {dataMenuCoffe.map((item) => (
+          {dataMenu.map((item) => (
             <div
               key={item.id}
               className="bg-white h-56 rounded-xl p-4 flex gap-4 max-w-[400px]"
             >
               <div className="relative w-32 h-full rounded-xl">
                 <Image
-                  src={item.image}
+                  src={item.imageUrl}
                   alt="coffe-img"
                   fill
                   priority
@@ -66,7 +87,7 @@ const Dashboard = () => {
 
               <div className="flex-1 flex flex-col justify-between">
                 <div className="flex flex-col gap-2">
-                  <h2 className="text-xl font-semibold">{item.name}</h2>
+                  <h2 className="text-xl font-semibold">{item.title}</h2>
                   <h5 className="text-sm text-gray-500">{item.desc}</h5>
                   <p className="font-medium">
                     {convertToRupiah(item.price, 2)}

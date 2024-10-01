@@ -34,7 +34,7 @@ const CardOrderItem = () => {
             <div key={i} className="flex items-center">
               <div className="relative w-32 h-32">
                 <Image
-                  src={item.image}
+                  src={item.imageUrl}
                   alt="coffe-img"
                   fill
                   priority
@@ -45,7 +45,7 @@ const CardOrderItem = () => {
 
               <div className="flex flex-col justify-between p-4 h-full w-full">
                 <div>
-                  <h2 className="text-lg font-semibold">{item.name}</h2>
+                  <h2 className="text-lg font-semibold">{item.title}</h2>
                   <p className="text-sm text-slate-400">Small - 200g</p>
                 </div>
 

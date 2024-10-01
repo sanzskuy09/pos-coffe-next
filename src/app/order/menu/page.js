@@ -1,11 +1,34 @@
-// "use client";
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import convertToRupiah from "@/utils/formatRupiah";
-import dataMenuCoffe from "@/config/data-menu.json";
 
 const Menu = () => {
+  const [dataMenu, setDataMenu] = useState([]);
+  const getDataMenu = async () => {
+    try {
+      const data = await fetch("/api/product", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const response = await data.json();
+
+      setDataMenu(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getDataMenu();
+  }, []);
+
+  console.log(dataMenu);
+
   return (
     <div>
       <div className="h-28 flex items-center px-8 gap-2 bg-white border-b">
@@ -29,14 +52,14 @@ const Menu = () => {
             }}
           >
             {/* Menu List */}
-            {dataMenuCoffe.map((item) => (
+            {dataMenu.map((item) => (
               <div
                 key={item.id}
                 className="bg-white h-52 rounded-xl p-4 flex gap-4 max-w-[400px]"
               >
                 <div className="relative w-32 h-full rounded-xl">
                   <Image
-                    src={item.image}
+                    src={item.imageUrl}
                     alt="coffe-img"
                     fill
                     priority
@@ -51,7 +74,7 @@ const Menu = () => {
 
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="flex flex-col gap-2">
-                    <h2 className="text-xl font-semibold">{item.name}</h2>
+                    <h2 className="text-xl font-semibold">{item.title}</h2>
                     <h5 className="text-sm text-gray-500">{item.desc}</h5>
                     <p className="font-medium">
                       {convertToRupiah(item.price, 2)}

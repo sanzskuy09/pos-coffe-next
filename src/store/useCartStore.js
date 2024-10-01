@@ -21,14 +21,14 @@ const useCartStore = create((set) => ({
           cart: updatedCart,
           totalItems: state.totalItems + 1,
           totalPrice: state.totalPrice + item.price,
-          totalDisc: state.totalDisc + item.disc,
+          // totalDisc: state.totalDisc + item.disc,
         };
       } else {
         return {
           cart: [...state.cart, { ...item, quantity: 1 }],
           totalItems: state.totalItems + 1,
           totalPrice: state.totalPrice + item.price,
-          totalDisc: state.totalDisc + item.disc,
+          // totalDisc: state.totalDisc + item.disc,
         };
       }
     });
@@ -41,7 +41,7 @@ const useCartStore = create((set) => ({
           cart: state.cart.filter((item) => item.id !== e.id),
           totalItems: state.totalItems - 1,
           totalPrice: state.totalPrice - e.price,
-          totalDisc: state.totalDisc - e.disc,
+          // totalDisc: state.totalDisc - e.disc,
         };
       } else {
         const updatedCart = state.cart.map((item) =>
@@ -52,7 +52,7 @@ const useCartStore = create((set) => ({
           cart: updatedCart,
           totalItems: state.totalItems - 1,
           totalPrice: state.totalPrice - e.price,
-          totalDisc: state.totalDisc - e.disc,
+          // totalDisc: state.totalDisc - e.disc,
         };
       }
     }),

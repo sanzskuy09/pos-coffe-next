@@ -14,29 +14,30 @@ datasource db {
 }
 
 model product {
-  id        Int       @id @default(autoincrement())
-  title     String    @db.VarChar(150)
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(150)
   desc      String?
-  price     Int       
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  price     Int
+  imageUrl  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("products")
 }
 
 model discount {
-  id          Int       @id @default(autoincrement())
-  dicsCode    String    @db.VarChar(10)
-  discAmount  Int
+  id         Int    @id @default(autoincrement())
+  dicsCode   String @db.VarChar(10)
+  discAmount Int
 
   @@map("discounts")
 }
 
 model transaction {
-  id          Int       @id @default(autoincrement())
-  trxId       String    @db.VarChar(50)
-  orderId     String    @db.VarChar(10)
-  salesDate   DateTime  @default(now())
+  id          Int     @id @default(autoincrement())
+  trxId       String  @db.VarChar(50)
+  orderId     String  @db.VarChar(10)
+  salesDate   String  @db.VarChar(50)
   status      String?
   totalAmount Int
 

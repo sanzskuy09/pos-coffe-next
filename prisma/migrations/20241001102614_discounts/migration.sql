@@ -12,7 +12,7 @@ CREATE TABLE `transactions` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `trxId` VARCHAR(50) NOT NULL,
     `orderId` VARCHAR(10) NOT NULL,
-    `salesDate` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `salesDate` VARCHAR(50) NOT NULL,
     `status` VARCHAR(191) NULL,
     `totalAmount` INTEGER NOT NULL,
 

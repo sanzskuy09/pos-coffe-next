@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Cappucino",
+    "image": "/image/Cappucino.jpg",
+    "desc": "Cappucino adalah kopi dengan campuran espresso, susu, dan foam.",
+    "price": 15000,
+    "disc": 4000
+  },
+  {
+    "id": 2,
+    "name": "Latte",
+    "image": "/image/Latte.jpg",
+    "desc": "Latte adalah kopi dengan lebih banyak susu dibandingkan foam.",
+    "price": 18000,
+    "disc": 3000
+  }
+]
